@@ -1,8 +1,8 @@
 import requests
-import config
+from config import Config
 
-MAKE_URL = config.MAKE_URL
-
+config_instance = Config()
+MAKE_URL = config_instance.MAKE_URL
 
 def save_answers(full_name, phone, email, street_name, zip_code, city,
                  service_type, 
