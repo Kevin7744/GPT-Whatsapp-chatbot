@@ -1,6 +1,6 @@
-# WhatsApp Chatbot Project
+# GPT-WhatsApp Chatbot
 
-This project is a chatbot application designed to run on WhatsApp, leveraging the WhatsApp Business API. It's built using Python and Flask, and it can handle various tasks such as responding to user inquiries, managing inventory, scheduling events, and providing information on cleaning services.
+This is a chatbot application designed to run on WhatsApp, leveraging the WhatsApp Business API. It's built using Python and Flask, and it can handle various tasks such as responding to user inquiries, managing inventory, scheduling events, and providing information on cleaning services using openAI capabilities.
 
 ## Features
 
