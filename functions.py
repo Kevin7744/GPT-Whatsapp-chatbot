@@ -1,11 +1,8 @@
 import requests
 from config import Config
-<<<<<<< HEAD
 
 config_instance = Config()
 MAKE_URL = config_instance.MAKE_URL
-=======
->>>>>>> acf9787deb18cad6c48ff3e405f90bbdb3ae02cc
 
 config_instance = Config()
 MAKE_URL = config_instance.MAKE_URL
