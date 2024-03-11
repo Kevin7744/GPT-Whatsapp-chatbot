@@ -26,11 +26,11 @@ if __name__ == '__main__':
     app = create_app()
     
     logging.info('Flask app started')
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=5000)
     
     
 #running app:
 #1) python3 main.py
-#2) ngrok http 8000 --domain=light-goat-driving.ngrok-free.app  (expose to the web using ngrok)
+#2) ngrok http 5000 --domain=light-goat-driving.ngrok-free.app  (expose to the web using ngrok)
 
     
