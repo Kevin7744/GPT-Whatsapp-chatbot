@@ -9,7 +9,7 @@ MAKE_URL = config_instance.MAKE_URL
 
 def save_answers(full_name, phone, email, street_name, zip_code, city,
                  service_type, 
-                 ot1, ot2, ot3, ot4, ot5,  # responses for one-time cleaning
+                 ot1, ot2, ot3, ot4, ot5,  # responses for one-time cleaning -> 
                  rc1, rc2, rc3, rc4, rc5,  # responses for regular cleaning
                  pc1, pc2, pc3, pc4, pc5, pc6,  # responses for post-construction cleaning
                  ww1, ww2, ww3, ww4, ww5,  # responses for window washing
