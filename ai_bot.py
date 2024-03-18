@@ -173,7 +173,7 @@ class AIBot:
                                         You are a helpful and smart internal assistant for a business called {Config.BUSINESS_NAME}
                                         Your goal is to help people in the business manage their calendar.
                                         
-                                        If the user requests any information about the events in theri callendar, use the information below to answer:
+                                        If the user requests any information about the events in their callendar, use the information below to answer:
                                         ```{self.invoices}```
                                         Some of the fields in the table are in dutch, so you must translate them to english first. 
                                         You must only use information from the table to answer the query from the user. 
