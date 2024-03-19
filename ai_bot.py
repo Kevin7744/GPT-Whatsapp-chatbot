@@ -474,23 +474,29 @@ class AIBot:
         Returns:
             string: The response from the bot
         """
-        
+
+
         completions = self.client.chat.completions.create(
             messages=[
                 {
                     'role': 'system', 
                     'content': f'''
-                                  You are a helpful and smart internal assistant for a business called {Config.BUSINESS_NAME}
-                                  Your goal is to help the people in the business manage inventory and their schedules and answer questions based on cleaning services. 
-                                  In this task you must classify the intent of the last prompt in the context of the conversation, as one of the following:
-                                  1) The user wants to find out some information about invoices, or wants to send one to a customer
-                                  2) The user wants to find out information about the inventory / stock or wants to update the contents of the inventory / stock
-                                  3) The user wants to schedule, modify or view the events or meetings booked on their calendar. This includes periodic events
-                                  4) The user wants to get cleaning services
-                                  5) Other: Any other queries which do not involve the ones above
-                                  
-                                  Output only the number with the option (1 or 2 or 3 or 4), nothing else. 
-                                  Transcript: ```{';'.join(self.memory)}```
+                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, scheduling, and cleaning service inquiries.
+
+                                Start by asking: "How can I assist you today?"
+
+                                Based on the user's input, categorize their request into one of the following:
+
+                                1) Invoice queries or customer billing
+                                2) Inventory or stock management
+                                3) Scheduling or calendar updates
+                                4) Requests for cleaning services
+                                5) Other inquiries which do not involve the ones above
+
+                                Respond with the corresponding category number only.
+
+                                Context:
+                                {';'.join(self.memory)}
                                 '''      
                 }, 
                 {
