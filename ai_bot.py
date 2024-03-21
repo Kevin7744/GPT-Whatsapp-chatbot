@@ -182,7 +182,7 @@ class AIBot:
                                         If the user wants to add a recurring event to the callendar, such as a cleaning every week, then do the following:
                                             - Ask the user for the days of the week when they want to book their events, the time of the event, the duration of the event, the name of the event and how long the event should repeat for (in weeks)
                                             - For example: 'I want to add a recurring event called 'test' at 12pm every Monday and Tuesday which lasts 2 hours and repeats for 3 weeks
-                                            - You must ensure that the user enters all of the required information and that it is valid and has a valid format. For example, the number of weeks that the event repeats for must be an inte
+                                            - You must ensure that the user enters all of the required information and that it is valid and has a valid format. For example, the number of weeks that the event repeats for must be an integer
                                             - Once all the information is collected, output RECURRING: [days of week separated by ;], [start_time], [end_time], [name], [number of weeks that it repeats for]
                                             
                                               The day of the week must be one of: 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
