@@ -9,6 +9,7 @@ from dateparser import parse
 import requests
 from functions import save_answers
 from knowledge import site_data
+import datetime
 
 
 MEMORY_SIZE = 30 #number of previous messages to store
@@ -165,6 +166,13 @@ class AIBot:
             string: The response from the bot
         """
         
+        now = datetime.datetime.now()
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        response = f"Today is {day}/{month}/{year}"
         completions = self.client.chat.completions.create(
             messages=[
                     {
@@ -172,6 +180,8 @@ class AIBot:
                         'content': f'''
                                         You are a helpful and smart internal assistant for a business called {Config.BUSINESS_NAME}
                                         Your goal is to help people in the business manage their calendar.
+                                        
+                                        The current date is {response}.
                                         
                                         If the user requests any information about the events in their callendar, use the information below to answer:
                                         ```{self.invoices}```
@@ -185,10 +195,11 @@ class AIBot:
                                             - You must ensure that the user enters all of the required information and that it is valid and has a valid format. For example, the number of weeks that the event repeats for must be an integer
                                             - Once all the information is collected, output RECURRING: [days of week separated by ;], [start_time], [end_time], [name], [number of weeks that it repeats for]
                                             
-                                              The day of the week must be one of: 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+                                              The day of the week must be one of: 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
                                               The start time and end time must have the form hh:mm:ss (assume the seconds and minutes are 0 if they are not mentioned)
                                               The date must have the format dd/mm/yyyy
                                               Assume that 1 month is equal to 4 weeks
+                
                                         
                                         If the user wants to add an event, or cleaning job to the calendar:
                                             - You must ask them for them for the name, the date of the event, the start time and the duration. You must insist that they enter the day and month instead of day of the week. 
@@ -234,20 +245,19 @@ class AIBot:
             data = ':'.join(response.split(':')[1:]).strip()
             days_of_week, start_time, end_time, name, length_weeks = data.split(',')
             
-            #get the number of weeks that the event should repeat for
-            try:
-                length_weeks = int(length_weeks)
-            except Exception:
-                length_weeks = 1
+            # Split days_of_week into a list of days
+            days_of_week = [day.strip() for day in days_of_week.split(';')]
             
-            days_of_week = days_of_week.split(';')
-            start_date = parse(days_of_week[0].strip()) #get date for first event occurence
-            start_date_string = datetime.datetime.strftime(start_date, "%Y-%m-%d")
+            # Get the date for the first event occurrence
+            start_date = parse(days_of_week[0])  # Assuming parse is a function that can parse the date
             
-            status = self.outlook_wraper.create_recurring_event(name, self.list_to_string(days_of_week), start_time, end_time, start_date_string, int(length_weeks) * len(days_of_week))
+            # Format the start date as "YYYY-MM-DD"
+            start_date_string = start_date.strftime("%Y-%m-%d")
             
+            status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string, str(int(length_weeks) * len(days_of_week)))
+
             if status:
-                return f'Ok, I just added a recurring event every on {" and ".join(days_of_week)}'
+                return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
             else:
                 return 'There was an error adding the event to the calendar, please try again'
             
