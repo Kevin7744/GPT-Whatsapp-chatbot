@@ -442,8 +442,6 @@ class AIBot:
                                 3. If you have multiple sofas with different seating arrangements to be cleaned, please specify the details of each sofa here.
                                 4. Is it a corner sofa?
 
-                                Based on the user's responses, capture the necessary details like full name, phone, email, street name, zip code, city, service_type and other cleaning service details. Use the {save_answers} function to save these details and respond to the user confirming the capture of their cleaning service request.
-                                
                                 Here is more infomation about our cleaning service business. {site_data}. Use where necessary.
 
                                 Here is a transcript of the conversation with the user up to now:
@@ -483,14 +481,14 @@ class AIBot:
                     'content': f'''
                                 As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, scheduling, and cleaning service inquiries.
 
-                                Start by asking: "How can I assist you today?"
+                                Always by asking: "How can I assist you today?"
 
                                 Based on the user's input, categorize their request into one of the following:
 
                                 1) Invoice queries or customer billing
                                 2) Inventory or stock management
                                 3) Scheduling or calendar updates
-                                4) Requests for cleaning services
+                                4) cleaning services inquiries.
                                 5) Other inquiries which do not involve the ones above
 
                                 Respond with the corresponding category number only.
@@ -546,7 +544,7 @@ class AIBot:
                               self.inventory_fn, 
                               self.callendar_fn, 
                               self.chit_chat_fn,
-                              self.cleaning_services_fn
+                              self.cleaning_services_fn,
                              ]        
         response = ''        
         intent = self.classify_intent(message)
