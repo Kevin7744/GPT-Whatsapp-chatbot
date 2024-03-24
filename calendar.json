@@ -1,0 +1,40 @@
+{
+    "subject": "{{1.name}}",
+    "body": {
+        "contentType": "HTML",
+        "content": "{{1.name}}"
+    },
+    "start": {
+      "dateTime": "{{1.start_date}}T{{1.start_time}}",
+      "timeZone": "UTC"
+    },
+    "end": {
+      "dateTime": "{{1.start_date}}T{{1.end_time}}",
+      "timeZone": "UTC"
+    },
+    "recurrence": {
+        "pattern": {
+          "type": "weekly",
+          "interval": 1,
+          "daysOfWeek": [ "Monday" ]
+        },
+        "range": {
+          "type": "endDate",
+          "startDate": "{{1.start_date}}",
+          "endDate": "{{1.end_date}}"
+        }
+      },
+      "location":{
+        "displayName":"Kevin"
+      },
+      "attendees": [
+        {
+          "emailAddress": {
+            "address":"kevinkirui1340@gmail.com",
+            "name": "Kevin"
+          },
+          "type": "required"
+        }
+      ],
+      "allowNewTimeProposals": true
+}

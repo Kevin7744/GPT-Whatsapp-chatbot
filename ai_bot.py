@@ -171,8 +171,9 @@ class AIBot:
         day = now.day
         month = now.month
         year = now.year
+        time = now.strftime("%H:%M:%S")
 
-        response = f"Today is {day}/{month}/{year}"
+        response = f"Today is {day}/{month}/{year} and the current time is {time}"
         completions = self.client.chat.completions.create(
             messages=[
                     {
@@ -181,7 +182,7 @@ class AIBot:
                                         You are a helpful and smart internal assistant for a business called {Config.BUSINESS_NAME}
                                         Your goal is to help people in the business manage their calendar.
                                         
-                                        The current date is {response}.
+                                        The current date and times are {response}.
                                         
                                         If the user requests any information about the events in their callendar, use the information below to answer:
                                         ```{self.invoices}```
@@ -193,7 +194,7 @@ class AIBot:
                                             - Ask the user for the days of the week when they want to book their events, the time of the event, the duration of the event, the name of the event and how long the event should repeat for (in weeks)
                                             - For example: 'I want to add a recurring event called 'test' at 12pm every Monday and Tuesday which lasts 2 hours and repeats for 3 weeks
                                             - You must ensure that the user enters all of the required information and that it is valid and has a valid format. For example, the number of weeks that the event repeats for must be an integer
-                                            - Once all the information is collected, output RECURRING: [days of week separated by ;], [start_time], [end_time], [name], [number of weeks that it repeats for]
+                                            - Once all the information is collected, output RECURRING: [days of week separated by ;], [start_time], [end_time], [name], [start_date], [number of weeks that it repeats for]
                                             
                                               The day of the week must be one of: 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
                                               The start time and end time must have the form hh:mm:ss (assume the seconds and minutes are 0 if they are not mentioned)
@@ -254,7 +255,10 @@ class AIBot:
             # Format the start date as "YYYY-MM-DD"
             start_date_string = start_date.strftime("%Y-%m-%d")
             
-            status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string, str(int(length_weeks) * len(days_of_week)))
+            # Format the end date as "YYYY-MM-DD"
+            end_date_string = start_date.strftime("%Y-%m-%d")
+            
+            status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string ,str(int(length_weeks) * len(days_of_week)))
 
             if status:
                 return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
