@@ -241,30 +241,54 @@ class AIBot:
                 return 'There was an error adding the event to the calendar, please try again'
         
         
+        # elif response.startswith('RECURRING'):
+            # print(response)
+            # data = ':'.join(response.split(':')[1:]).strip()
+            # print(data)
+            # days_of_week, start_time, end_time, name, length_weeks = data.split(',')
+            
+            # # Split days_of_week into a list of days
+            # days_of_week = [day.strip() for day in days_of_week.split(';')]
+            
+            # # Get the date for the first event occurrence
+            # start_date = parse(days_of_week[0])  # Assuming parse is a function that can parse the date
+            
+            # # Format the start date as "YYYY-MM-DD"
+            # start_date_string = start_date.strftime("%Y-%m-%d")
+            
+            # # Format the end date as "YYYY-MM-DD"
+            # end_date_string = start_date.strftime("%Y-%m-%d")
+            
+            # status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string, end_date_string, str(int(length_weeks) * len(days_of_week)))
+
+            # if status:
+            #     return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
+            # else:
+            #     return 'There was an error adding the event to the calendar, please try again'
+            
+            
         elif response.startswith('RECURRING'):
             print(response)
             data = ':'.join(response.split(':')[1:]).strip()
-            days_of_week, start_time, end_time, name, length_weeks = data.split(',')
-            
+            print(data)
+            days_of_week, start_time, end_time, name, start_date, end_date, length_weeks = [item.strip() for item in data.split(',')]
+
             # Split days_of_week into a list of days
             days_of_week = [day.strip() for day in days_of_week.split(';')]
-            
-            # Get the date for the first event occurrence
-            start_date = parse(days_of_week[0])  # Assuming parse is a function that can parse the date
-            
-            # Format the start date as "YYYY-MM-DD"
-            start_date_string = start_date.strftime("%Y-%m-%d")
-            
-            # Format the end date as "YYYY-MM-DD"
-            end_date_string = start_date.strftime("%Y-%m-%d")
-            
-            status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string, end_date_string,str(int(length_weeks) * len(days_of_week)))
+
+            # Format the start date and end date
+            start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+            end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+
+            status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date, end_date, str(int(length_weeks) * len(days_of_week)))
 
             if status:
                 return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
             else:
                 return 'There was an error adding the event to the calendar, please try again'
-            
+
+
+
         return response
     
     

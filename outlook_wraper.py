@@ -19,7 +19,7 @@ class OutlookWraper:
         return resp.status_code == 200
         
     
-    def create_recurring_event(self, name, days_of_week, start_time, end_time, start_date, num_occurences):
+    def create_recurring_event(self, name, days_of_week, start_time, end_time, start_date, end_date, num_occurences):
         #event that repeats every week
         resp = requests.get(self.recurrent_event_url, 
                             data = {
@@ -27,7 +27,8 @@ class OutlookWraper:
                                 'days_of_week': days_of_week, 
                                 'start_time': start_time, 
                                 'end_time': end_time, 
-                                'start_date': start_date, 
+                                'start_date': start_date,
+                                'end_date': end_date, 
                                 'num_occurences': num_occurences
                             })
 
@@ -42,4 +43,4 @@ if __name__ == '__main__':
     end = datetime.now() + timedelta(hours = 1)
     # wraper.create_event('', '', '')
     
-    wraper.create_recurring_event('test', '["thursday"]', '11:00:00', '14:00:00', '2024/01/18', 4)
+    wraper.create_recurring_event('test', '["thursday"]', '11:00:00', '14:00:00', '24/03/2024', '28/04/2024', 4)
