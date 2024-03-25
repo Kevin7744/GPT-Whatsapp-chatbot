@@ -573,9 +573,7 @@ class AIBot:
         
         return response
             
-        
-        
-            
+           
 if __name__ == '__main__':
     bot = AIBot()
     
