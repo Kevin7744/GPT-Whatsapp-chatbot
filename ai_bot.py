@@ -519,8 +519,10 @@ class AIBot:
                 {
                     'role': 'system', 
                     'content': f'''
-                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, scheduling, and cleaning service inquiries.
+                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and cleaning service questions.
 
+                                Always try to understand what the users intention is first.
+                                
                                 Always by asking: "How can I assist you today?"
 
                                 Based on the user's input, categorize their request into one of the following:
