@@ -182,14 +182,13 @@ class AIBot:
                                         You are a helpful and smart internal assistant for a business called {Config.BUSINESS_NAME}
                                         Your goal is to help people in the business manage their calendar.
                                         
-                                        The current date and times are {response}.
+                                        The current date and time is {response}.
                                         
                                         If the user requests any information about the events in their callendar, use the information below to answer:
                                         ```{self.invoices}```
                                         Some of the fields in the table are in dutch, so you must translate them to english first. 
                                         You must only use information from the table to answer the query from the user. 
-                                        
-                                        
+                                                                                
                                         If the user wants to add a recurring event to the callendar, such as a cleaning every week, then do the following:
                                             - Ask the user for the days of the week when they want to book their events, the time of the event, the duration of the event, the name of the event and how long the event should repeat for (in weeks)
                                             - For example: 'I want to add a recurring event called 'test' at 12pm every Monday and Tuesday which lasts 2 hours and repeats for 3 weeks
@@ -200,8 +199,7 @@ class AIBot:
                                               The start time and end time must have the form hh:mm:ss (assume the seconds and minutes are 0 if they are not mentioned)
                                               The date must have the format dd/mm/yyyy
                                               Assume that 1 month is equal to 4 weeks
-                
-                                        
+                                                        
                                         If the user wants to add an event, or cleaning job to the calendar:
                                             - You must ask them for them for the name, the date of the event, the start time and the duration. You must insist that they enter the day and month instead of day of the week. 
                                             - Once the user enters the details, output EVENT: [name], [date], [time], [duration]
@@ -239,32 +237,6 @@ class AIBot:
                 return f'Ok I just added a new event to your callendar on {start_date} for {name}'
             else:
                 return 'There was an error adding the event to the calendar, please try again'
-        
-        
-        # elif response.startswith('RECURRING'):
-            # print(response)
-            # data = ':'.join(response.split(':')[1:]).strip()
-            # print(data)
-            # days_of_week, start_time, end_time, name, length_weeks = data.split(',')
-            
-            # # Split days_of_week into a list of days
-            # days_of_week = [day.strip() for day in days_of_week.split(';')]
-            
-            # # Get the date for the first event occurrence
-            # start_date = parse(days_of_week[0])  # Assuming parse is a function that can parse the date
-            
-            # # Format the start date as "YYYY-MM-DD"
-            # start_date_string = start_date.strftime("%Y-%m-%d")
-            
-            # # Format the end date as "YYYY-MM-DD"
-            # end_date_string = start_date.strftime("%Y-%m-%d")
-            
-            # status = self.outlook_wraper.create_recurring_event(name, days_of_week, start_time, end_time, start_date_string, end_date_string, str(int(length_weeks) * len(days_of_week)))
-
-            # if status:
-            #     return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
-            # else:
-            #     return 'There was an error adding the event to the calendar, please try again'
             
             
         elif response.startswith('RECURRING'):
@@ -286,8 +258,6 @@ class AIBot:
                 return f'Ok, I just added a recurring event every {" and ".join(days_of_week)}'
             else:
                 return 'There was an error adding the event to the calendar, please try again'
-
-
 
         return response
     
