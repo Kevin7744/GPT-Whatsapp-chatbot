@@ -114,7 +114,7 @@ class AIBot:
                         'content': message
                     }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             temperature=0.3, 
             max_tokens=3000
         )
@@ -216,7 +216,7 @@ class AIBot:
                         'content': message
                     }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             max_tokens=4000, 
             temperature=0.2
         )
@@ -313,7 +313,7 @@ class AIBot:
                         'content': message
                     }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             max_tokens=4000
         )
         
@@ -385,7 +385,7 @@ class AIBot:
                         'content': message
                     }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             temperature=0.3
         )
         
@@ -464,7 +464,7 @@ class AIBot:
                     'content': message
                 }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             temperature=0
         )
 
@@ -512,7 +512,7 @@ class AIBot:
                     'content': message
                 }
             ], 
-            model='gpt-4-0125-preview', 
+            model='gpt-3.5-turbo-0125', 
             temperature=0
         )
         
