@@ -392,7 +392,7 @@ class AIBot:
         return completions.choices[0].message.content
 
     def cleaning_services_fn(self, message):
-        """Function to handle questions from the conversation related to cleaning services
+        """Function to handle questions related to cleaning services
         
         Args:
             message (string): The message containing the answers from the user
@@ -405,7 +405,7 @@ class AIBot:
                 {
                     'role': 'system',
                     'content': f'''
-                                You are a helpful and smart internal  assistant for a business called {Config.BUSINESS_NAME}, specializing in cleaning services. Your task is to assist users by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning, regular cleaning, post-construction cleaning, window washing, carpet cleaning, and sofa cleaning. 
+                                You are a helpful and smart internal  assistant. Your task is to assist the boss by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning, regular cleaning, post-construction cleaning, window washing, carpet cleaning, and sofa cleaning. 
 
                                 Always start a conversation with: How can I help you today?
                                 
@@ -452,11 +452,9 @@ class AIBot:
                                 3. If you have multiple sofas with different seating arrangements to be cleaned, please specify the details of each sofa here.
                                 4. Is it a corner sofa?
 
-                                Here is more infomation about our cleaning service business. {site_data}. Use where necessary.
-
-                                Here is a transcript of the conversation with the user up to now:
+                                Here is a transcript of the conversation with the boss up to now:
                                 ```{self.memory}```
-                                Reply to the user's message appropriately, using the transcript to get the context and when saving the user's information.                                
+                                Reply to the boss message appropriately, using the transcript to get the context and when saving the user's information.                                
                                 '''
                     },
                 {
@@ -487,18 +485,16 @@ class AIBot:
                 {
                     'role': 'system', 
                     'content': f'''
-                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and cleaning service questions.
+                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and cleaning services inquiries.
 
                                 Always try to understand what the users intention is first.
-                                
-                                Always by asking: "How can I assist you today?"
 
                                 Based on the user's input, categorize their request into one of the following:
 
-                                1) Invoice queries or customer billing
+                                1) cleaning services inquiries.
                                 2) Inventory or stock management
                                 3) Scheduling or calendar updates
-                                4) cleaning services inquiries.
+                                4) Invoice queries or customer billing
                                 5) Other inquiries which do not involve the ones above
 
                                 Respond with the corresponding category number only.
@@ -548,11 +544,11 @@ class AIBot:
         self.add_memory(message, True) #add the new message from the user to memory
         
         #get the function to excute based on the intent
-        intent_to_function = [self.invoices_fn, 
+        intent_to_function = [self.invoices_fn,
+                              self.cleaning_services_fn, 
                               self.inventory_fn, 
                               self.callendar_fn, 
                               self.chit_chat_fn,
-                              self.cleaning_services_fn,
                              ]        
         response = ''        
         intent = self.classify_intent(message)
