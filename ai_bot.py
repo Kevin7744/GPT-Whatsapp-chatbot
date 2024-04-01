@@ -485,13 +485,13 @@ class AIBot:
                 {
                     'role': 'system', 
                     'content': f'''
-                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and cleaning services inquiries.
+                                As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and answer questions related to cleaning services.
 
                                 Always try to understand what the users intention is first.
 
                                 Based on the user's input, categorize their request into one of the following:
 
-                                1) cleaning services inquiries
+                                1) cleaning services questions.
                                 2) Inventory or stock management
                                 3) Scheduling or calendar updates
                                 4) Invoice queries or customer billing
@@ -544,10 +544,10 @@ class AIBot:
         self.add_memory(message, True) #add the new message from the user to memory
         
         #get the function to excute based on the intent
-        intent_to_function = [self.invoices_fn,
-                              self.cleaning_services_fn, 
+        intent_to_function = [self.cleaning_services_fn,
                               self.inventory_fn, 
                               self.callendar_fn, 
+                              self.invoices_fn, 
                               self.chit_chat_fn,
                              ]        
         response = ''        
