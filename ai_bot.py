@@ -491,7 +491,7 @@ class AIBot:
 
                                 Based on the user's input, categorize their request into one of the following:
 
-                                1) cleaning services inquiries.
+                                1) cleaning services inquiries
                                 2) Inventory or stock management
                                 3) Scheduling or calendar updates
                                 4) Invoice queries or customer billing
