@@ -406,10 +406,8 @@ class AIBot:
                     'role': 'system',
                     'content': f'''
                                 You are a helpful and smart internal  assistant. Your task is to assist the boss by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning, regular cleaning, post-construction cleaning, window washing, carpet cleaning, and sofa cleaning. 
-
-                                Always start a conversation with: How can I help you today?
                                 
-                                Always ask the user for their name, email, address and phonenumber(optional).
+                                Always ask the user for their name, email, address and phonenumber.
                                 
                                 For each service request, you will ask the following questions to gather the necessary details:
                                 
@@ -469,7 +467,7 @@ class AIBot:
                     'content': message
                 }
             ], 
-            model='gpt-3.5-turbo-0125', 
+            model='gpt-4-1106-preview', 
             temperature=0
         )
 
@@ -493,8 +491,6 @@ class AIBot:
                     'role': 'system', 
                     'content': f'''
                                 As a dedicated assistant for {Config.BUSINESS_NAME}, you are here to assist with inventory management, calendar scheduling, and answer questions related to cleaning services.
-
-                                Always try to understand what the users intention is first.
 
                                 Based on the user's input, categorize their request into one of the following:
 
