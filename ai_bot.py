@@ -391,9 +391,93 @@ class AIBot:
         
         return completions.choices[0].message.content
 
+    # def cleaning_services_fn(self, message):
+    #     """Function to handle questions related to cleaning services
+        
+    #     Args:
+    #         message (string): The message containing the answers from the user
+
+    #     Returns:
+    #         String: The response from the bot
+    #     """
+    #     completions = self.client.chat.completions.create(
+    #         messages=[
+    #             {
+    #                 'role': 'system',
+    #                 'content': f'''
+    #                             You are a helpful and smart internal  assistant. Your task is to assist the boss by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning, regular cleaning, post-construction cleaning, window washing, carpet cleaning, and sofa cleaning. 
+                                
+    #                             Always ask the user for their name, email, address and phonenumber.
+                                
+    #                             For each service request, you will ask the following questions to gather the necessary details:
+                                
+    #                             One-Time Cleaning:
+    #                             1. Which standard cleaning tasks do you require?
+    #                             2. What is the total square footage (m²) of the space that needs to be cleaned?
+    #                             3. Are there specific spots or details that need extra attention?
+    #                             4. Are there specific cleaning products we should use, for instance, for a certain type of floor?
+    #                             5. Do you also wish the windows to be washed?
+
+    #                             Regular Cleaning:
+    #                             1. Desired cleaning frequency
+    #                             2. How often per week do you want cleaning to be done?
+    #                             3. What is the total square footage (m²) of the space that needs to be cleaned?
+    #                             4. What standard cleaning tasks do you expect from us?
+    #                             5. Are there specific focus points or additional tasks you want to be executed?
+
+    #                             Post-Construction Cleaning:
+    #                             1. Which standard cleaning tasks do you require?
+    #                             2. What is the current condition of the spaces?
+    #                             3. Are there specific spots or details that need extra attention?
+    #                             4. What is the total square footage (m²) of the space that needs to be cleaned?
+    #                             5. Are there specific cleaning products we should use, for instance, for a certain type of floor?
+    #                             6. Are there any traces of cement grout haze?
+
+    #                             Window Washing:
+    #                             1. What is the total square footage (m²) of the space that needs to be cleaned?
+    #                             2. How many windows approximately need to be washed?
+    #                             3. How dirty are the windows currently?
+    #                             4. Are they mostly large or small windows?
+    #                             5. Are there specific cleaning products we should use for the windows?
+
+    #                             Carpet Cleaning:
+    #                             1. What is the width of the carpet you want to be cleaned? (in meters)
+    #                             2. What is the length of the carpet you want to be cleaned? (in meters)
+    #                             3. If you wish to have multiple carpets cleaned, please specify the total number of carpets to be cleaned here.
+    #                             4. If you have multiple carpets with different dimensions that need cleaning, please specify the dimensions of each carpet here.
+
+    #                             Sofa Cleaning:
+    #                             1. How many sofas do you want to be cleaned?
+    #                             2. How many seating places do the sofa(s) you want to be cleaned have?
+    #                             3. If you have multiple sofas with different seating arrangements to be cleaned, please specify the details of each sofa here.
+    #                             4. Is it a corner sofa?
+
+                                
+    #                             Important:
+    #                             After capturing all this information  make sure to save the user details, the type of cleaning service they need and the necessary details about their service.
+    #                             Save the answers here {save_answers}.
+                                
+    #                             Here is a transcript of the conversation with the boss up to now:
+    #                             ```{self.memory}```
+    #                             Reply to the boss message appropriately, using the transcript to get the context and when saving the user's information.                                
+    #                             '''
+    #                 },
+    #             {
+    #                 'role': 'user', 
+    #                 'content': message
+    #             }
+    #         ], 
+    #         model='gpt-4-1106-preview', 
+    #         temperature=0
+    #     )
+
+    #     response = completions.choices[0].message.content
+
+    #     return response 
+     
     def cleaning_services_fn(self, message):
         """Function to handle questions related to cleaning services
-        
+
         Args:
             message (string): The message containing the answers from the user
 
@@ -405,12 +489,12 @@ class AIBot:
                 {
                     'role': 'system',
                     'content': f'''
-                                You are a helpful and smart internal  assistant. Your task is to assist the boss by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning, regular cleaning, post-construction cleaning, window washing, carpet cleaning, and sofa cleaning. 
-                                
+                                You are a helpful and smart internal  assistant. Your task is to assist the boss by understanding their cleaning needs through a series of questions and capturing their responses for services such as one-time cleaning and sofa cleaning. 
+
                                 Always ask the user for their name, email, address and phonenumber.
-                                
+
                                 For each service request, you will ask the following questions to gather the necessary details:
-                                
+
                                 One-Time Cleaning:
                                 1. Which standard cleaning tasks do you require?
                                 2. What is the total square footage (m²) of the space that needs to be cleaned?
@@ -418,62 +502,44 @@ class AIBot:
                                 4. Are there specific cleaning products we should use, for instance, for a certain type of floor?
                                 5. Do you also wish the windows to be washed?
 
-                                Regular Cleaning:
-                                1. Desired cleaning frequency
-                                2. How often per week do you want cleaning to be done?
-                                3. What is the total square footage (m²) of the space that needs to be cleaned?
-                                4. What standard cleaning tasks do you expect from us?
-                                5. Are there specific focus points or additional tasks you want to be executed?
-
-                                Post-Construction Cleaning:
-                                1. Which standard cleaning tasks do you require?
-                                2. What is the current condition of the spaces?
-                                3. Are there specific spots or details that need extra attention?
-                                4. What is the total square footage (m²) of the space that needs to be cleaned?
-                                5. Are there specific cleaning products we should use, for instance, for a certain type of floor?
-                                6. Are there any traces of cement grout haze?
-
-                                Window Washing:
-                                1. What is the total square footage (m²) of the space that needs to be cleaned?
-                                2. How many windows approximately need to be washed?
-                                3. How dirty are the windows currently?
-                                4. Are they mostly large or small windows?
-                                5. Are there specific cleaning products we should use for the windows?
-
-                                Carpet Cleaning:
-                                1. What is the width of the carpet you want to be cleaned? (in meters)
-                                2. What is the length of the carpet you want to be cleaned? (in meters)
-                                3. If you wish to have multiple carpets cleaned, please specify the total number of carpets to be cleaned here.
-                                4. If you have multiple carpets with different dimensions that need cleaning, please specify the dimensions of each carpet here.
-
                                 Sofa Cleaning:
                                 1. How many sofas do you want to be cleaned?
                                 2. How many seating places do the sofa(s) you want to be cleaned have?
                                 3. If you have multiple sofas with different seating arrangements to be cleaned, please specify the details of each sofa here.
                                 4. Is it a corner sofa?
 
-                                
+                                make  sure to ask user for their name, email, address and phonenumber one after the other.
+
                                 Important:
-                                After capturing all this information  make sure to save the user details, the type of cleaning service they need and the necessary details about their service.
-                                Save the answers here {save_answers}.
-                                
+                                If all this information is captured make sure to save the user details, the type of cleaning service they need and the necessary details about their service output
+                                Make the output startwith 'SAVE'
+                                SAVE: [name], [phone], [email], [street_name], [city], [service_type], [1 "this is the response from the type of cleaning"]...[5].
+
                                 Here is a transcript of the conversation with the boss up to now:
                                 ```{self.memory}```
-                                Reply to the boss message appropriately, using the transcript to get the context and when saving the user's information.                                
                                 '''
-                    },
+                },
                 {
-                    'role': 'user', 
+                    'role': 'user',
                     'content': message
                 }
-            ], 
-            model='gpt-4-1106-preview', 
+            ],
+            model='gpt-4-1106-preview',
             temperature=0
         )
 
         response = completions.choices[0].message.content
 
-        return response  
+        if response.startswith('SAVE'):
+            # Extract the parameters from the response
+            params = response.split(': ')[1].split(', ')
+            name, phone, email, street_name, city, service_type = params[:6]
+            # Call the save_answers function with the extracted parameters
+            save_answers(name, phone, email, street_name, city, service_type, *params[6:])
+            return 'Your answers have been saved.'
+        else:
+            return response
+
     
         
     def classify_intent(self, message):
