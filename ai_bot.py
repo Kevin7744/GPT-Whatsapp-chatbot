@@ -157,7 +157,7 @@ class AIBot:
     
     
     def callendar_fn(self, message):
-        """Function to handle queries related to the callendar
+        """Function to handle queries related to the calendar
 
         Args:
             message (string): The message sent by the user
@@ -395,7 +395,7 @@ class AIBot:
     #     """Function to handle questions related to cleaning services
         
     #     Args:
-    #         message (string): The message containing the answers from the user
+    #         message (string): The message sent by the user
 
     #     Returns:
     #         String: The response from the bot
@@ -479,7 +479,7 @@ class AIBot:
         """Function to handle questions related to cleaning services
 
         Args:
-            message (string): The message containing the answers from the user
+            message (string): The message sent by the user
 
         Returns:
             String: The response from the bot
@@ -513,7 +513,9 @@ class AIBot:
                                 Important:
                                 If all this information is captured make sure to save the user details, the type of cleaning service they need and the necessary details about their service output
                                 Make the output startwith 'SAVE'
-                                SAVE: [name], [phone], [email], [street_name], [city], [service_type], [1 "this is the response from the type of cleaning"]...[5].
+                                SAVE: [name], [phone], [email], [street_name], [city], [service_type], [ot1], [ot2], [ot3], [ot4], [ot5].
+                                
+                                where 0t1 to ot5 is the answers for one-time cleaning from the user.
 
                                 Here is a transcript of the conversation with the boss up to now:
                                 ```{self.memory}```
@@ -577,7 +579,7 @@ class AIBot:
                     'content': message
                 }
             ], 
-            model='gpt-4-1106-preview', 
+            model='gpt-3.5-turbo-0125', 
             temperature=0
         )
         
