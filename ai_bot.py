@@ -524,7 +524,7 @@ class AIBot:
                     'content': message
                 }
             ],
-            model='gpt-4-1106-preview',
+            model='gpt-3.5-turbo-0125',
             temperature=0
         )
 
@@ -577,7 +577,7 @@ class AIBot:
                     'content': message
                 }
             ], 
-            model='gpt-3.5-turbo-0125', 
+            model='gpt-4-1106-preview', 
             temperature=0
         )
         
