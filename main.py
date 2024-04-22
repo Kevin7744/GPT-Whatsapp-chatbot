@@ -31,6 +31,6 @@ if __name__ == '__main__':
     
 #running app:
 #1) python3 main.py
-#2) ngrok http 5000 --domain=light-goat-driving.ngrok-free.app  (expose to the web using ngrok)
+#2) ngrok http 5000 --domain=light-goat-driving.ngrok-free.app  (expose to the web using ngrok) surely-welcome-asp.ngrok-free.app
 
     

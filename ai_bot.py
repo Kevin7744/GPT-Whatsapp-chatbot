@@ -38,7 +38,7 @@ class AIBot:
         
         #measure the number of tokens in memory to avoid exceeding context length
         self.encoder = tiktoken.get_encoding('cl100k_base')
-        self.max_memory_tokens = 4000
+        self.max_memory_tokens = 2000
         
     
     def list_to_string(self, lst):
