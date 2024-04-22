@@ -77,6 +77,10 @@ Python - The programming language used.
 Flask - The web framework used.
 ngrok - Used to expose local servers behind NATs and firewalls to the public internet over secure tunnels.
 
+##### Limitations
+1. Doesn't support multiple requests
+2. On Gpt-3, some of the functions don't work because of context-length. Switching to GPT-4 will blow up the API cost
+
 
 ##### Versioning
 We use SemVer for versioning. For the versions available, see the tags on this repository.
